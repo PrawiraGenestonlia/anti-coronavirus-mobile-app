@@ -16,6 +16,7 @@ export default function NewsScreen() {
 
 NewsScreen.navigationOptions = {
   title: 'Preventions',
+  headerShown: false,
 };
 
 const styles = StyleSheet.create({
