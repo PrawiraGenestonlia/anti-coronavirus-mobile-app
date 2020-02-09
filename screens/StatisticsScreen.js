@@ -11,6 +11,8 @@ import {
   RefreshControl,
   SafeAreaView,
   StatusBar,
+  Linking,
+  TouchableOpacity,
 } from 'react-native';
 import Table from 'react-native-simple-table';
 import axios from 'axios';
@@ -71,6 +73,10 @@ export default function StatisticsScreen() {
     setTrendData(data3.data);
     setRefreshing(false);
   }, []);
+
+  const handlePressUrl = (url) => {
+    Linking.openURL(url);
+  };
 
   const SummaryView = () => {
     return (
@@ -142,6 +148,14 @@ export default function StatisticsScreen() {
               columns={columns}
               dataSource={countryData}
             />
+            <TouchableOpacity
+              onPress={() => {
+                handlePressUrl('https://www.worldometers.info/coronavirus/');
+              }}>
+              <Text style={[styles.paragraph, { paddingTop: 20, paddingBottom: 20, color: 'grey' }]}>
+                Original Source:{'\n'}https://www.worldometers.info/coronavirus/
+            </Text>
+            </TouchableOpacity>
             <Text style={styles.sectionHeader}>Trends</Text>
             <Text style={[styles.paragraph, { paddingBottom: 20 }]}>
               This feature will be enabled in the next update.

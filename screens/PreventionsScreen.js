@@ -8,6 +8,8 @@ import {
   Dimensions,
   ActivityIndicator,
   StatusBar,
+  Linking,
+  TouchableOpacity,
 } from 'react-native';
 import { SliderBox } from 'react-native-image-slider-box';
 import axios from 'axios';
@@ -26,6 +28,10 @@ export default function PreventionsScreen() {
     };
     fetch();
   }, []);
+
+  const handlePressUrl = (url) => {
+    Linking.openURL(url);
+  };
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', paddingTop: 40, backgroundColor: '#ffffff' }}>
@@ -62,6 +68,14 @@ export default function PreventionsScreen() {
           ) : (
               <></>
             )}
+          <TouchableOpacity
+            onPress={() => {
+              handlePressUrl('https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public');
+            }}>
+            <Text style={[styles.paragraph, { padding: 20, color: 'grey' }]}>
+              Original Source:{'\n'}https://www.who.int/emergencies/diseases/novel-coronavirus-2019/advice-for-public
+            </Text>
+          </TouchableOpacity>
           <Text style={styles.sectionHeader}>
             Hope you remain healthy during this period!
           </Text>
